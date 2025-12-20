@@ -19,6 +19,10 @@
     <!-- Icons -->
     <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 
+    <!-- Toaster -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
+
 </head>
 
 <body class="bg-white">
@@ -40,11 +44,21 @@
                                 <div class="pt-0">
                                     <form method="POST" action="{{ route('login') }}" class="my-4">
                                         @csrf
+
+                                        @if (session('error'))
+                                            <div class="alert alert-danger">
+                                                {{ session('error') }}    
+                                            </div>    
+                                        @endif
+
                                         <div class="form-group mb-3">
                                             <label for="email" class="form-label">Email address</label>
                                             <input class="form-control" type="email" id="email" name="email"
                                                 required="" placeholder="Enter your email"
                                                 value="{{ old('email') }}">
+                                            @error('email')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
 
 
@@ -52,6 +66,9 @@
                                             <label for="password" class="form-label">Password</label>
                                             <input class="form-control" name="password" type="password" required=""
                                                 id="password" placeholder="Enter your password">
+                                            @error('password')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror    
                                         </div>
 
                                         <div class="form-group d-flex mb-3">
@@ -163,6 +180,31 @@
 
     <!-- App js-->
     <script src="{{ asset('backend/assets/js/app.js') }}"></script>
+
+    <!-- Toaster Js -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'success':
+                    toastr.success(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ");
+                    break;
+            }
+        @endif
+    </script>
 
 </body>
 
