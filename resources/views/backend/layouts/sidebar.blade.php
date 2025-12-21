@@ -40,18 +40,18 @@
                 <li class="menu-title">Pages</li>
 
                 <li>
-                    <a href="#sidebarAuth" data-bs-toggle="collapse">
-                        <i data-feather="users"></i>
-                        <span> Authentication </span>
+                    <a href="#testimonials" data-bs-toggle="collapse">
+                        <i data-feather="star"></i>
+                        <span> Testimonials </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarAuth">
+                    <div class="collapse" id="testimonials">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="auth-login.html" class="tp-link">Log In</a>
+                                <a href="{{ route('admin.testimonial.index') }}" class="tp-link">All Testimonials</a>
                             </li>
                             <li>
-                                <a href="auth-register.html" class="tp-link">Register</a>
+                                <a href="{{ route('admin.testimonial.create') }}" class="tp-link">Add Testimonial</a>
                             </li>
                            
                         </ul>

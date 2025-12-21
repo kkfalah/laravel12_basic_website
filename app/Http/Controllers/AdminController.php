@@ -77,7 +77,7 @@ class AdminController extends Controller
     }
 
 
-    public function profileStore(Request $request)
+    public function profileUpdate(Request $request)
     {
         $user = Auth::user();
 

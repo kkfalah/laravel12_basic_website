@@ -2,12 +2,18 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+
+
+Route::get('/', [PageController::class, 'index'])->name('index');
+
+
+
+require __DIR__ . '/auth.php';
 
 Route::get('/admin', function () {
     return redirect()->route('dashboard');
@@ -23,16 +29,28 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
-
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 Route::get('/admin/login', [AuthenticatedSessionController::class, 'create'])->name('admin.login');
 // Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 // Route::get('/verify', [AdminController::class, 'verification'])->name('custom.verification.form');
 // Route::post('/verify', [AdminController::class, 'verify'])->name('custom.verification.verify');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
-    Route::post('/admin/profile', [AdminController::class, 'profileStore'])->name('admin.profile.store');
-    Route::post('/admin/password', [AdminController::class, 'passwordUpdate'])->name('admin.password.update');
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+
+    //Profile
+    Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
+    Route::post('/profile/update', [AdminController::class, 'profileUpdate'])->name('profile.update');
+    Route::post('/password/update', [AdminController::class, 'passwordUpdate'])->name('password.update');
+
+    //Testimonials
+    Route::controller(TestimonialController::class)->group(function () {
+        Route::get('/testimonials', 'index')->name('testimonial.index');
+        Route::get('/testimonials/create', 'create')->name('testimonial.create');
+        Route::post('/testimonials/store', 'store')->name('testimonial.store');
+        Route::get('/testimonials/{id}/edit', 'edit')->name('testimonial.edit');
+        Route::patch('/testimonials/{id}/update', 'update')->name('testimonial.update');
+        Route::delete('/testimonials/{id}/delete', 'destroy')->name('testimonial.destroy');
+    });
+
+
 });

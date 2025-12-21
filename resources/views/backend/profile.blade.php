@@ -19,26 +19,26 @@
 
             <!-- start row -->
             <!-- <div class="row">
-                                                                <div class="col-12">
+                    <div class="col-12">
 
-                                                                    <div class="card">
-                                                                        <div class="card-body">
-                                                                            <div class="align-items-center">
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <img src="assets/images/users/user-11.jpg" class="rounded-2 avatar-xxl" alt="image profile">
-                                                
-                                                                                    <div class="overflow-hidden ms-4">
-                                                                                        <h4 class="m-0 text-dark fs-20">Phoenix Baker</h4>
-                                                                                        <p class="my-1 text-muted fs-16">Passionate Software Engineer Crafting Innovative Solutions</p>
-                                                                                        <span class="fs-15"><i class="mdi mdi-message me-2 align-middle"></i>Speaks: <span>English <span class="badge bg-primary-subtle text-primary px-2 py-1 fs-13 fw-normal">native</span> , Spanish, Turkish </span></span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <img src="assets/images/users/user-11.jpg" class="rounded-2 avatar-xxl" alt="image profile">
+    
+                                        <div class="overflow-hidden ms-4">
+                                            <h4 class="m-0 text-dark fs-20">Phoenix Baker</h4>
+                                            <p class="my-1 text-muted fs-16">Passionate Software Engineer Crafting Innovative Solutions</p>
+                                            <span class="fs-15"><i class="mdi mdi-message me-2 align-middle"></i>Speaks: <span>English <span class="badge bg-primary-subtle text-primary px-2 py-1 fs-13 fw-normal">native</span> , Spanish, Turkish </span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                                                                </div>
-                                                            </div> -->
+                    </div>
+                </div> -->
             <!-- end row -->
 
             <div class="row">
@@ -49,7 +49,7 @@
 
                             <div class="align-items-center">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ !empty($user->photo) ? Storage::url($user->photo) : asset('images/default-profile.jpg') }}"
+                                    <img src="{{ !empty($user->photo) ? Storage::url($user->photo) : asset('backend/assets/images/default-profile.jpg') }}"
                                         class="rounded-circle avatar-xxl img-thumbnail float-start"
                                         alt="{{ $user->name }}">
 
@@ -78,7 +78,7 @@
                                                 </div>
 
                                                 <div class="card-body">
-                                                    <form action="{{ route('admin.profile.store') }}" method="POST"
+                                                    <form action="{{ route('admin.profile.update') }}" method="POST"
                                                         enctype="multipart/form-data">
                                                         @csrf
 
@@ -150,7 +150,7 @@
                                                             <label class="form-label"></label>
                                                             <div class="col-lg-12 col-xl-12">
                                                                 <img id="showPhoto"
-                                                                    src="{{ !empty($user->photo) ? Storage::url($user->photo) : asset('images/default-profile.jpg') }}"
+                                                                    src="{{ !empty($user->photo) ? Storage::url($user->photo) : asset('backend/assets/images/default-profile.jpg') }}"
                                                                     class="rounded-2xl avatar-xxl img-thumbnail float-start"
                                                                     alt="{{ $user->name }}">
                                                             </div>
