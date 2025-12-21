@@ -4,10 +4,10 @@
         <div class="container-xxl">
             <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
                 <div class="flex-grow-1">
-                    <h4 class="fs-18 fw-semibold m-0">Edit Testimonial</h4>
+                    <h4 class="fs-18 fw-semibold m-0">Edit Slider</h4>
                 </div>
                 <div class="text-end">
-                    <a href="{{ route('admin.testimonial.index') }}" class="btn btn-primary">Back</a>
+                    <a href="{{ route('admin.slider.index') }}" class="btn btn-primary">Back</a>
                 </div>
 
             </div>
@@ -30,13 +30,13 @@
                                                 <div class="card-header">
                                                     <div class="row align-items-center">
                                                         <div class="col">
-                                                            <h4 class="card-title mb-0">Edit Testimonial</h4>
+                                                            <h4 class="card-title mb-0">Edit Slider</h4>
                                                         </div><!--end col-->
                                                     </div>
                                                 </div>
 
                                                 <div class="card-body">
-                                                    <form action="{{ route('admin.testimonial.update', $testimonial->id) }}" method="POST"
+                                                    <form action="{{ route('admin.slider.update', $slider->id) }}" method="POST"
                                                         enctype="multipart/form-data">
                                                         @csrf
                                                         @method('patch')
@@ -44,41 +44,43 @@
                                                             <div class="col-lg-6 col-xl-6">
 
                                                                 <div class="form-group mb-3 row">
-                                                                    <label class="form-label">Full Name</label>
+                                                                    <label class="form-label">Title</label>
                                                                     <div class="col-lg-12 col-xl-12">
                                                                         <input
-                                                                            class="form-control @error('name') is-invalid @enderror"
-                                                                            type="text" name="name" id="name"
-                                                                            placeholder="name"
+                                                                            class="form-control @error('title') is-invalid @enderror"
+                                                                            type="text" name="title" id="title"
+                                                                            placeholder="title"
                                                                             aria-describedby="basic-addon1"
-                                                                            value="{{ old('name', $testimonial->name) }}">
-                                                                        @error('name')
+                                                                            value="{{ old('title', $slider->title) }}">
+                                                                        @error('title')
                                                                             <span class="text-danger">{{ $message }}</span>
                                                                         @enderror
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group mb-3 row">
-                                                                    <label class="form-label">Position</label>
+                                                                    <label class="form-label">Description</label>
                                                                     <div class="col-lg-12 col-xl-12">
-                                                                        <input
-                                                                            class="form-control @error('position') is-invalid @enderror"
-                                                                            type="text" name="position" id="position"
-                                                                            placeholder="position"
-                                                                            aria-describedby="basic-addon1"
-                                                                            value="{{ old('position', $testimonial->position) }}">
-                                                                        @error('position')
-                                                                            <span class="text-danger">{{ $message }}</span>
-                                                                        @enderror
+                                                                        <textarea class="form-control" rows="3" name="description" id="description" placeholder="description">{{ old('description', $slider->description) }} </textarea>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group mb-3 row">
-                                                                    <label class="form-label">Message</label>
+                                                                    <label class="form-label">Link</label>
                                                                     <div class="col-lg-12 col-xl-12">
-                                                                        <textarea class="form-control" rows="3" name="message" id="message" placeholder="message">{{ old('message', $testimonial->message) }} </textarea>
+                                                                        <input
+                                                                            class="form-control @error('link') is-invalid @enderror"
+                                                                            type="text" name="link" id="link"
+                                                                            placeholder="link"
+                                                                            aria-describedby="basic-addon1"
+                                                                            value="{{ old('link', $slider->link) }}">
+                                                                            @error('link')
+                                                                                <span class="text-danger">{{ $message }}</span>
+                                                                            @enderror
                                                                     </div>
                                                                 </div>
+
+                                                                
 
                                                             </div>
                                                             <div class="col-lg-6 col-xl-6">
@@ -97,27 +99,14 @@
                                                                     <label class="form-label"></label>
                                                                     <div class="col-lg-12 col-xl-12">
                                                                         <img id="showImage"
-                                                                            src="{{ !empty($testimonial->image) ? Storage::url($testimonial->image) : asset('backend/assets/images/default-profile.jpg') }}"
-                                                                            class="rounded-2xl avatar-lg img-thumbnail float-start"
-                                                                            alt="{{ $testimonial->name }}">
+                                                                            src="{{ !empty($slider->image) ? Storage::url($slider->image) : asset('backend/assets/images/default-image.png') }}"
+                                                                            class="rounded-2xl img-thumbnail float-start"
+                                                                            style="height: 250px"
+                                                                            alt="{{ $slider->name }}">
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="form-group mb-3">
-                                                                    <label class="form-label">Rating</label>
-
-                                                                    <div id="starRating" class="d-flex gap-1"
-                                                                        style="cursor:pointer;">
-                                                                        @for ($i = 1; $i <= 5; $i++)
-                                                                            <i class="mdi fs-3 {{ $i <= $testimonial->rating ? 'mdi-star text-warning' : 'mdi-star-outline' }}"
-                                                                                data-value="{{ $i }}">
-                                                                            </i>
-                                                                        @endfor
-                                                                    </div>
-
-                                                                    <input type="hidden" name="rating" id="ratingValue"
-                                                                        value="{{ $testimonial->rating }}" required>
-                                                                </div>
+                                                                
                                                             </div>
 
                                                             <div class="form-group row">

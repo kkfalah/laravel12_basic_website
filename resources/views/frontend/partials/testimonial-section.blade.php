@@ -27,8 +27,9 @@
                 </div>
                 <div class="lonyo-t-author">
                     <div class="lonyo-t-author-thumb">
-                        <img src="{{ !empty($item->image) ? Storage::url($item->image) : asset('frontend/assets/images/default-profile.jpg') }}"
-                            {{-- src="{{ asset('frontend') }}/assets/images/v1/img7.png"  --}} alt="{{ $item->name }}" style="width:60px; height:60px">
+                        <img 
+                            src="{{ !empty($item->image) ? Storage::url($item->image) : asset('frontend/assets/images/default-profile.jpg') }}"
+                            alt="{{ $item->name }}" style="width:60px; height:60px">
                     </div>
                     <div class="lonyo-t-author-data">
                         <p>{{ $item->name }}</p>

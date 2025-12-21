@@ -82,18 +82,18 @@
                 <li class="menu-title mt-2">General</li>
 
                 <li>
-                    <a href="#sidebarBaseui" data-bs-toggle="collapse">
-                        <i data-feather="package"></i>
-                        <span> Components </span>
+                    <a href="#sliders" data-bs-toggle="collapse">
+                        <i data-feather="image"></i>
+                        <span> Slider </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarBaseui">
+                    <div class="collapse" id="sliders">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="ui-accordions.html" class="tp-link">Accordions</a>
+                                <a href="{{ route('admin.slider.index') }}" class="tp-link">All Slider</a>
                             </li>
                             <li>
-                                <a href="ui-alerts.html" class="tp-link">Alerts</a>
+                                <a href="{{ route('admin.slider.create') }}" class="tp-link">Add Slider</a>
                             </li>
                             
                         </ul>

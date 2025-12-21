@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\ProfileController;
@@ -50,6 +51,16 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/testimonials/{id}/edit', 'edit')->name('testimonial.edit');
         Route::patch('/testimonials/{id}/update', 'update')->name('testimonial.update');
         Route::delete('/testimonials/{id}/delete', 'destroy')->name('testimonial.destroy');
+    });
+
+    //Sliders
+    Route::controller(SliderController::class)->group(function () {
+        Route::get('/sliders', 'index')->name('slider.index');
+        Route::get('/sliders/create', 'create')->name('slider.create');
+        Route::post('/sliders/store', 'store')->name('slider.store');
+        Route::get('/sliders/{id}/edit', 'edit')->name('slider.edit');
+        Route::patch('/sliders/{id}/update', 'update')->name('slider.update');
+        Route::delete('/sliders/{id}/delete', 'destroy')->name('slider.destroy');
     });
 
 
