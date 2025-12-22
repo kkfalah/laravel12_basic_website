@@ -61,6 +61,8 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/sliders/{id}/edit', 'edit')->name('slider.edit');
         Route::patch('/sliders/{id}/update', 'update')->name('slider.update');
         Route::delete('/sliders/{id}/delete', 'destroy')->name('slider.destroy');
+
+        Route::post('/edit-sliders/{id}', 'editSlider');
     });
 
 

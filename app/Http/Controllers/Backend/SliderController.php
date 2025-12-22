@@ -166,4 +166,21 @@ class SliderController extends Controller
 
         return redirect()->route('admin.slider.index')->with($notification);
     }
+
+    public function editSlider(Request $request, $id)
+    {
+        $slider = Slider::findOrFail($id);
+
+        if ($request->has('title')) {
+            $slider->title = $request->title;
+        }
+
+        if ($request->has('description')) {
+            $slider->description = $request->description;
+        }
+
+        $slider->save();
+
+        return response()->json(['success' => true]);
+    }
 }
