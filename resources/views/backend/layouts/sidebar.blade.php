@@ -103,6 +103,25 @@
                 </li>
 
                 <li>
+                    <a href="#sliders" data-bs-toggle="collapse">
+                        <i data-feather="layout"></i>
+                        <span>Mid Sectons </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sliders">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('admin.section.one.index') }}" class="tp-link">Mid Section One</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.section.two.index') }}" class="tp-link">Mid Section Two</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
                     <a href="widgets.html" class="tp-link">
                         <i data-feather="aperture"></i>
                         <span> Widgets </span>

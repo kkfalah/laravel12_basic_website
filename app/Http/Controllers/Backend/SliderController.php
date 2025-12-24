@@ -111,7 +111,7 @@ class SliderController extends Controller
             $manager = new ImageManager(new Driver());
 
             // Create filename
-            $baseName = str_replace(' ', '-', $request->name);
+            $baseName = str_replace(' ', '-', $request->title);
             $ext = $image->getClientOriginalExtension();
             $newFileName = $baseName . '-' . now()->format('YmdHis') . '.' . $ext;
 

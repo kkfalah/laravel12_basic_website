@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Feature;
+use App\Models\MidSectionOne;
+use App\Models\MidSectionTwo;
 use App\Models\Slider;
 use App\Models\Testimonial;
 use App\Models\Title;
@@ -17,27 +19,17 @@ class PageController extends Controller
         $features = Feature::limit(6)->get();
         $sliders = Slider::find(1);
         $title = Title::find(1);
-        return view('frontend.index', compact('testimonials','sliders', 'title', 'features'));
+        $midSectionOne = MidSectionOne::find(1);
+        $midSectionTwo = MidSectionTwo::find(1);
+        return view('frontend.index', compact(
+            'testimonials',
+            'sliders', 
+            'title', 
+            'features',
+            'midSectionOne',
+            'midSectionTwo'
+        ));
     }
 
-    public function editTitle(Request $request, $id)
-    {
-        $title = Title::findOrFail($id);
-
-        if ($request->has('features')) {
-            $title->features = $request->features;
-        }
-
-        if ($request->has('testimonials')) {
-            $title->testimonials = $request->testimonials;
-        }
-        
-        if ($request->has('answers')) {
-            $title->answers = $request->answers;
-        }
-
-        $title->save();
-
-        return response()->json(['success' => true]);
-    }
+    
 }

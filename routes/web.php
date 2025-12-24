@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\FeatureController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\TestimonialController;
@@ -45,7 +46,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::post('/password/update', [AdminController::class, 'passwordUpdate'])->name('password.update');
 
     //Title edits
-    Route::post('/edit-titles/{id}',  [PageController::class, 'editTitle']);
+    Route::post('/edit-titles/{id}',  [DashboardController::class, 'editTitle']);
     Route::post('/edit-sliders/{id}',  [SliderController::class, 'editSlider']);
 
     //Testimonials
@@ -66,6 +67,19 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/sliders/{id}/edit', 'edit')->name('slider.edit');
         Route::patch('/sliders/{id}/update', 'update')->name('slider.update');
         Route::delete('/sliders/{id}/delete', 'destroy')->name('slider.destroy');        
+    });
+
+     //Mid Sections
+    Route::controller(DashboardController::class)->group(function () {
+        //Section One
+        Route::get('/section-one', 'midSectionOneIndex')->name('section.one.index');
+        Route::get('/section-one/edit', 'midSectionOneEdit')->name('section.one.edit');
+        Route::patch('/section-one/update', 'midSectionOneUpdate')->name('section.one.update');
+        
+        //Section Two
+        Route::get('/section-two', 'midSectionTwoIndex')->name('section.two.index');
+        Route::get('/section-two/edit', 'midSectionTwoEdit')->name('section.two.edit');
+        Route::patch('/section-two/update', 'midSectionTwoUpdate')->name('section.two.update');
     });
     
 
