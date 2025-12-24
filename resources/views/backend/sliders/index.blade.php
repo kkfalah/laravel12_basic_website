@@ -48,8 +48,7 @@
                                             <td>
                                                 <a href="{{ route('admin.slider.edit', $item->id) }}"
                                                     class="btn btn-success"><i class="mdi mdi-pencil"></i></a>
-                                                <a id="delete" href="{{ route('admin.slider.destroy', $item->id) }}"
-                                                    class="btn btn-danger"><i class="mdi mdi-delete"></i></a>
+                                                
                                                 <form action="{{ route('admin.slider.destroy', $item->id) }}"
                                                     method="POST" class="delete-form d-inline">
                                                     @csrf

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Backend\FeatureController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Frontend\PageController;
@@ -43,6 +44,10 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::post('/profile/update', [AdminController::class, 'profileUpdate'])->name('profile.update');
     Route::post('/password/update', [AdminController::class, 'passwordUpdate'])->name('password.update');
 
+    //Title edits
+    Route::post('/edit-titles/{id}',  [PageController::class, 'editTitle']);
+    Route::post('/edit-sliders/{id}',  [SliderController::class, 'editSlider']);
+
     //Testimonials
     Route::controller(TestimonialController::class)->group(function () {
         Route::get('/testimonials', 'index')->name('testimonial.index');
@@ -60,10 +65,18 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::post('/sliders/store', 'store')->name('slider.store');
         Route::get('/sliders/{id}/edit', 'edit')->name('slider.edit');
         Route::patch('/sliders/{id}/update', 'update')->name('slider.update');
-        Route::delete('/sliders/{id}/delete', 'destroy')->name('slider.destroy');
-
-        Route::post('/edit-sliders/{id}', 'editSlider');
+        Route::delete('/sliders/{id}/delete', 'destroy')->name('slider.destroy');        
     });
+    
 
+    //Features
+    Route::controller(FeatureController::class)->group(function () {
+        Route::get('/features', 'index')->name('feature.index');
+        Route::get('/features/create', 'create')->name('feature.create');
+        Route::post('/features/store', 'store')->name('feature.store');
+        Route::get('/features/{id}/edit', 'edit')->name('feature.edit');
+        Route::patch('/features/{id}/update', 'update')->name('feature.update');
+        Route::delete('/features/{id}/delete', 'destroy')->name('feature.destroy');
+    });
 
 });
