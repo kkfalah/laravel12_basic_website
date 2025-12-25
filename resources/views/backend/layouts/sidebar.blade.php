@@ -76,6 +76,25 @@
                         </ul>
                     </div>
                 </li>
+                <li>
+                    <a href="#FAQ" data-bs-toggle="collapse">
+                        <i data-feather="help-circle"></i>
+                        <span> FAQ </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="FAQ">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('admin.faq.index') }}" class="tp-link">All FAQ</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.faq.create') }}" class="tp-link">Add FAQ</a>
+                            </li>
+                            
+                           
+                        </ul>
+                    </div>
+                </li>
 
                 
 

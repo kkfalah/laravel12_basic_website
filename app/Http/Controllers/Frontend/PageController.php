@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Faq;
 use App\Models\Feature;
 use App\Models\MidSectionOne;
 use App\Models\MidSectionTwo;
@@ -25,6 +26,7 @@ class PageController extends Controller
         $midSectionTwo = MidSectionTwo::find(1);
         $midSectionVideo = MidSectionVideo::find(1);
         $midSectionVideoBottom = MidSectionVideoBottom::latest()->get();
+        $faq = Faq::limit(6)->get();
         return view('frontend.index', compact(
             'testimonials',
             'sliders', 
@@ -34,6 +36,7 @@ class PageController extends Controller
             'midSectionTwo',
             'midSectionVideo',
             'midSectionVideoBottom',
+            'faq',
         ));
     }
 

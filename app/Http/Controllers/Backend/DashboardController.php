@@ -150,7 +150,6 @@ class DashboardController extends Controller
         return redirect()->route('admin.section.two.index')->with($notification);
     }
 
-
     public function midSectionVideoIndex(){
         $midSectionVideo = MidSectionVideo::find(1);
         return view('backend.sections.mid_section_video', compact('midSectionVideo'));
@@ -262,24 +261,5 @@ class DashboardController extends Controller
         return redirect()->route('admin.section.video.bottom.index')->with($notification);
     }
 
-    public function midSectionVideoBottom(Request $request, $id)
-    {
-        $title = Title::findOrFail($id);
-
-        if ($request->has('features')) {
-            $title->features = $request->features;
-        }
-
-        if ($request->has('testimonials')) {
-            $title->testimonials = $request->testimonials;
-        }
-        
-        if ($request->has('answers')) {
-            $title->answers = $request->answers;
-        }
-
-        $title->save();
-
-        return response()->json(['success' => true]);
-    }
+    
 }

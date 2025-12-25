@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\FaqController;
 use App\Http\Controllers\Backend\FeatureController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\TestimonialController;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [PageController::class, 'index'])->name('index');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 
 
@@ -102,6 +104,16 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/features/{id}/edit', 'edit')->name('feature.edit');
         Route::patch('/features/{id}/update', 'update')->name('feature.update');
         Route::delete('/features/{id}/delete', 'destroy')->name('feature.destroy');
+    });
+
+    //FAQ
+    Route::controller(FaqController::class)->group(function () {
+        Route::get('/faq', 'index')->name('faq.index');
+        Route::get('/faq/create', 'create')->name('faq.create');
+        Route::post('/faq/store', 'store')->name('faq.store');
+        Route::get('/faq/{id}/edit', 'edit')->name('faq.edit');
+        Route::patch('/faq/{id}/update', 'update')->name('faq.update');
+        Route::delete('/faq/{id}/delete', 'destroy')->name('faq.destroy');
     });
 
 });
