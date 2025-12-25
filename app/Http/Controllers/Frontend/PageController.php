@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Feature;
 use App\Models\MidSectionOne;
 use App\Models\MidSectionTwo;
+use App\Models\MidSectionVideo;
+use App\Models\MidSectionVideoBottom;
 use App\Models\Slider;
 use App\Models\Testimonial;
 use App\Models\Title;
@@ -21,13 +23,17 @@ class PageController extends Controller
         $title = Title::find(1);
         $midSectionOne = MidSectionOne::find(1);
         $midSectionTwo = MidSectionTwo::find(1);
+        $midSectionVideo = MidSectionVideo::find(1);
+        $midSectionVideoBottom = MidSectionVideoBottom::latest()->get();
         return view('frontend.index', compact(
             'testimonials',
             'sliders', 
             'title', 
             'features',
             'midSectionOne',
-            'midSectionTwo'
+            'midSectionTwo',
+            'midSectionVideo',
+            'midSectionVideoBottom',
         ));
     }
 

@@ -48,6 +48,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     //Title edits
     Route::post('/edit-titles/{id}',  [DashboardController::class, 'editTitle']);
     Route::post('/edit-sliders/{id}',  [SliderController::class, 'editSlider']);
+    Route::post('/edit-video-bottom/{id}',  [DashboardController::class, 'midSectionVideoBottom']);
 
     //Testimonials
     Route::controller(TestimonialController::class)->group(function () {
@@ -80,6 +81,16 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/section-two', 'midSectionTwoIndex')->name('section.two.index');
         Route::get('/section-two/edit', 'midSectionTwoEdit')->name('section.two.edit');
         Route::patch('/section-two/update', 'midSectionTwoUpdate')->name('section.two.update');
+        
+        //Section Video
+        Route::get('/section-video', 'midSectionVideoIndex')->name('section.video.index');
+        Route::get('/section-video/edit', 'midSectionVideoEdit')->name('section.video.edit');
+        Route::patch('/section-video/update', 'midSectionVideoUpdate')->name('section.video.update');
+
+        //Section Video Bottom
+        Route::get('/section-video-bottom', 'midSectionVideoBottomIndex')->name('section.video.bottom.index');
+        Route::get('/section-video-bottom/{id}/edit', 'midSectionVideoBottomEdit')->name('section.video.bottom.edit');
+        Route::patch('/section-video-bottom/{id}/update', 'midSectionVideoBottomUpdate')->name('section.video.bottom.update');
     });
     
 

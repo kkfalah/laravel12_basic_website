@@ -103,18 +103,24 @@
                 </li>
 
                 <li>
-                    <a href="#sliders" data-bs-toggle="collapse">
+                    <a href="#midsection" data-bs-toggle="collapse">
                         <i data-feather="layout"></i>
                         <span>Mid Sectons </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sliders">
+                    <div class="collapse" id="midsection">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('admin.section.one.index') }}" class="tp-link">Mid Section One</a>
                             </li>
                             <li>
                                 <a href="{{ route('admin.section.two.index') }}" class="tp-link">Mid Section Two</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.section.video.index') }}" class="tp-link">Video Section</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.section.video.bottom.index') }}" class="tp-link">Video Bottom</a>
                             </li>
                             
                         </ul>
