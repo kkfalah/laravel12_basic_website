@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\FaqController;
 use App\Http\Controllers\Backend\FeatureController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\ProfileController;
@@ -13,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', [PageController::class, 'index'])->name('index');
+Route::get('/', [PageController::class, 'index'])->name('home');
+Route::get('/team', [PageController::class, 'team'])->name('team');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 
@@ -116,6 +118,16 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/faq/{id}/edit', 'edit')->name('faq.edit');
         Route::patch('/faq/{id}/update', 'update')->name('faq.update');
         Route::delete('/faq/{id}/delete', 'destroy')->name('faq.destroy');
+    });
+
+     //Team
+    Route::controller(TeamController::class)->group(function () {
+        Route::get('/team', 'index')->name('team.index');
+        Route::get('/team/create', 'create')->name('team.create');
+        Route::post('/team/store', 'store')->name('team.store');
+        Route::get('/team/{id}/edit', 'edit')->name('team.edit');
+        Route::patch('/team/{id}/update', 'update')->name('team.update');
+        Route::delete('/team/{id}/delete', 'destroy')->name('team.destroy');
     });
 
 });

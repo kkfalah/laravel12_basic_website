@@ -11,6 +11,7 @@ use App\Models\MidSectionTwo;
 use App\Models\MidSectionVideo;
 use App\Models\MidSectionVideoBottom;
 use App\Models\Slider;
+use App\Models\Team;
 use App\Models\Testimonial;
 use App\Models\Title;
 use Illuminate\Http\Request;
@@ -40,6 +41,16 @@ class PageController extends Controller
             'midSectionVideoBottom',
             'faq',
             'cta',
+        ));
+    }
+
+
+    public function team(){
+        $team = Team::orderBy('name', 'ASC')->paginate(12);
+        $cta = Cta::find(1);
+        return view('frontend.team', compact(
+            'cta',
+            'team',
         ));
     }
 

@@ -96,6 +96,26 @@
                     </div>
                 </li>
 
+                <li>
+                    <a href="#Team" data-bs-toggle="collapse">
+                        <i data-feather="help-circle"></i>
+                        <span> Team </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="Team">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('admin.team.index') }}" class="tp-link">All Team</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.team.create') }}" class="tp-link">Add Team</a>
+                            </li>
+                            
+                           
+                        </ul>
+                    </div>
+                </li>
+
                 
 
                 
