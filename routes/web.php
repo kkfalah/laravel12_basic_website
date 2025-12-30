@@ -51,6 +51,8 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::post('/edit-titles/{id}',  [DashboardController::class, 'editTitle']);
     Route::post('/edit-sliders/{id}',  [SliderController::class, 'editSlider']);
     Route::post('/edit-video-bottom/{id}',  [DashboardController::class, 'midSectionVideoBottom']);
+    Route::post('/update-cta/{id}',  [DashboardController::class, 'updateCta']);
+    Route::post('/update-cta-image/{id}',  [DashboardController::class, 'updateCtaImage']);
 
     //Testimonials
     Route::controller(TestimonialController::class)->group(function () {

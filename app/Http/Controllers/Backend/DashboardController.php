@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cta;
 use App\Models\MidSectionOne;
 use App\Models\MidSectionTwo;
 use App\Models\MidSectionVideo;
@@ -26,7 +27,7 @@ class DashboardController extends Controller
         if ($request->has('testimonials')) {
             $title->testimonials = $request->testimonials;
         }
-        
+
         if ($request->has('answers')) {
             $title->answers = $request->answers;
         }
@@ -36,17 +37,65 @@ class DashboardController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function midSectionOneIndex(){
+    public function updateCta(Request $request, $id)
+    {
+        $cta = Cta::findOrFail($id);
+
+        $cta->update($request->only(['title', 'description']));
+
+        return response()->json(['success' => true, 'message' => 'Updated successfully']);
+    }
+    public function updateCtaImage(Request $request, $id)
+    {
+        $cta = Cta::findOrFail($id);
+
+        $path = $cta->image;
+
+        if ($request->hasFile('image')) {
+
+            $image = $request->file('image');
+            $manager = new ImageManager(new Driver());
+
+            // Create filename
+            $baseName = str_replace(' ', '-', $request->name);
+            $ext = $image->getClientOriginalExtension();
+            $newFileName = $baseName . '-' . now()->format('YmdHis') . '.' . $ext;
+
+            // Resize image
+            $img = $manager->read($image)->resize(306, 481);
+
+            // Store image
+            $path = 'cta/' . $newFileName;
+            Storage::disk('public')->put($path, (string) $img->encode());
+
+            // Delete old image
+            if ($cta->image && Storage::disk('public')->exists($cta->image)) {
+                Storage::disk('public')->delete($cta->image);
+            }
+        }
+
+        // Update record
+        $cta->update([
+            'image' => $path,
+        ]);
+
+        return response()->json(['success' => true, 'image_url' => asset($path), 'message' => 'Image updated successfully']);
+    }
+
+    public function midSectionOneIndex()
+    {
         $midSectionOne = MidSectionOne::find(1);
         return view('backend.sections.mid_section_one', compact('midSectionOne'));
     }
 
-    public function midSectionOneEdit(){
+    public function midSectionOneEdit()
+    {
         $midSectionOne = MidSectionOne::find(1);
         return view('backend.sections.mid_section_one_edit', compact('midSectionOne'));
     }
 
-    public function midSectionOneUpdate(Request $request){
+    public function midSectionOneUpdate(Request $request)
+    {
 
         $midSectionOne = MidSectionOne::findOrFail(1);
 
@@ -91,18 +140,21 @@ class DashboardController extends Controller
         return redirect()->route('admin.section.one.index')->with($notification);
     }
 
-    public function midSectionTwoIndex(){
+    public function midSectionTwoIndex()
+    {
         $midSectionTwo = MidSectionTwo::find(1);
         return view('backend.sections.mid_section_two', compact('midSectionTwo'));
     }
 
-    public function midSectionTwoEdit(){
+    public function midSectionTwoEdit()
+    {
         $midSectionTwo = MidSectionTwo::find(1);
         return view('backend.sections.mid_section_two_edit', compact('midSectionTwo'));
     }
 
-    public function midSectionTwoUpdate(Request $request){
-        
+    public function midSectionTwoUpdate(Request $request)
+    {
+
         $midSectionTwo = MidSectionTwo::findOrFail(1);
 
         // Keep old image by default
@@ -150,18 +202,21 @@ class DashboardController extends Controller
         return redirect()->route('admin.section.two.index')->with($notification);
     }
 
-    public function midSectionVideoIndex(){
+    public function midSectionVideoIndex()
+    {
         $midSectionVideo = MidSectionVideo::find(1);
         return view('backend.sections.mid_section_video', compact('midSectionVideo'));
     }
 
-    public function midSectionVideoEdit(){
+    public function midSectionVideoEdit()
+    {
         $midSectionVideo = MidSectionVideo::find(1);
         return view('backend.sections.mid_section_video_edit', compact('midSectionVideo'));
     }
 
-    public function midSectionVideoUpdate(Request $request){
-        
+    public function midSectionVideoUpdate(Request $request)
+    {
+
         $midSectionVideo = MidSectionVideo::findOrFail(1);
 
         // Keep old image by default
@@ -207,18 +262,21 @@ class DashboardController extends Controller
         return redirect()->route('admin.section.video.index')->with($notification);
     }
 
-    public function midSectionVideoBottomIndex(){
+    public function midSectionVideoBottomIndex()
+    {
         $midSectionVideoBottom = MidSectionVideoBottom::latest()->get();
         return view('backend.sections.mid_section_video_bottom', compact('midSectionVideoBottom'));
     }
 
-    public function midSectionVideoBottomEdit($id){
+    public function midSectionVideoBottomEdit($id)
+    {
         $midSectionVideoBottom = MidSectionVideoBottom::findOrFail($id);
         return view('backend.sections.mid_section_video_bottom_edit', compact('midSectionVideoBottom'));
     }
 
-    public function midSectionVideoBottomUpdate(Request $request, $id){
-        
+    public function midSectionVideoBottomUpdate(Request $request, $id)
+    {
+
         $midSectionVideoBottom = MidSectionVideoBottom::findOrFail($id);
 
         // Keep old image by default
@@ -260,6 +318,4 @@ class DashboardController extends Controller
 
         return redirect()->route('admin.section.video.bottom.index')->with($notification);
     }
-
-    
 }

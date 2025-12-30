@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cta;
 use App\Models\Faq;
 use App\Models\Feature;
 use App\Models\MidSectionOne;
@@ -27,6 +28,7 @@ class PageController extends Controller
         $midSectionVideo = MidSectionVideo::find(1);
         $midSectionVideoBottom = MidSectionVideoBottom::latest()->get();
         $faq = Faq::limit(6)->get();
+        $cta = Cta::find(1);
         return view('frontend.index', compact(
             'testimonials',
             'sliders', 
@@ -37,6 +39,7 @@ class PageController extends Controller
             'midSectionVideo',
             'midSectionVideoBottom',
             'faq',
+            'cta',
         ));
     }
 
