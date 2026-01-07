@@ -4,7 +4,7 @@
             <a href="{{ route('home') }}">Home</a>
         </li>
         <li class="menu-item-has-children">
-            <a href="#">About Us</a>
+            <a href="{{ route('about') }}">About Us</a>
             <ul class="sub-menu">
                 <li><a href="#">Company Profile</a></li>
                 <li><a href="#">Portfolio</a></li>

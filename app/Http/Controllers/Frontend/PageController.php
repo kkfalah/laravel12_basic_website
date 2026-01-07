@@ -18,7 +18,8 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
         $testimonials = Testimonial::latest()->get();
         $features = Feature::limit(6)->get();
@@ -32,8 +33,8 @@ class PageController extends Controller
         $cta = Cta::find(1);
         return view('frontend.index', compact(
             'testimonials',
-            'sliders', 
-            'title', 
+            'sliders',
+            'title',
             'features',
             'midSectionOne',
             'midSectionTwo',
@@ -45,7 +46,8 @@ class PageController extends Controller
     }
 
 
-    public function team(){
+    public function team()
+    {
         $team = Team::orderBy('name', 'ASC')->paginate(12);
         $cta = Cta::find(1);
         return view('frontend.team', compact(
@@ -54,5 +56,17 @@ class PageController extends Controller
         ));
     }
 
-    
+    public function about()
+    {
+        $team = Team::orderBy('name', 'ASC')->paginate(12);
+        $title = Title::find(1);
+        $faq = Faq::limit(6)->get();
+        $cta = Cta::find(1);
+        return view('frontend.about', compact(
+            'cta',
+            'team',
+            'title',
+            'faq',
+        ));
+    }
 }
