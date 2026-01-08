@@ -190,9 +190,9 @@
                 </li>
 
                 <li>
-                    <a href="widgets.html" class="tp-link">
+                    <a href="{{ route('admin.contact.message') }}" class="tp-link">
                         <i data-feather="aperture"></i>
-                        <span> Widgets </span>
+                        <span> Contacts Message </span>
                     </a>
                 </li>
 

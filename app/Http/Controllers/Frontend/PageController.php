@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Contact;
 use App\Models\Cta;
 use App\Models\Faq;
 use App\Models\Feature;
@@ -117,5 +118,40 @@ class PageController extends Controller
             'cta',
 
         ));
+    }
+
+    public function contact()
+    {
+        $title = Title::find(1);
+        $faq = Faq::limit(6)->get();
+        $cta = Cta::find(1);
+        return view('frontend.contact', compact(
+            'cta',
+            'title',
+            'faq',
+        ));
+    }
+
+    public function contactMessage(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|min:3|max:50',
+            'email' => 'required|email',
+        ]);
+
+        
+
+        Contact::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message,
+        ]);
+
+        $notification = [
+            'message' => 'Message send successfully!',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->back()->with($notification);
     }
 }

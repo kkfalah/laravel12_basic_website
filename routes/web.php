@@ -19,6 +19,7 @@ Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/team', [PageController::class, 'team'])->name('team');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::post('/contact', [PageController::class, 'contactMessage'])->name('contact.message');
 
 Route::get('/blog', [PageController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [PageController::class, 'blogDetails']);
@@ -103,6 +104,10 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/section-video-bottom', 'midSectionVideoBottomIndex')->name('section.video.bottom.index');
         Route::get('/section-video-bottom/{id}/edit', 'midSectionVideoBottomEdit')->name('section.video.bottom.edit');
         Route::patch('/section-video-bottom/{id}/update', 'midSectionVideoBottomUpdate')->name('section.video.bottom.update');
+
+        Route::get('/contact-message', 'contactMessage')->name('contact.message');
+        Route::delete('/contact-message/{id}/delete', 'contactMessageDestroy')->name('contact.message.destroy');
+
     });
     
 

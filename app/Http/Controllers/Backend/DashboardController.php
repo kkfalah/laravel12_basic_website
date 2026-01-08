@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 use App\Models\Cta;
 use App\Models\MidSectionOne;
 use App\Models\MidSectionTwo;
@@ -317,5 +318,25 @@ class DashboardController extends Controller
         ];
 
         return redirect()->route('admin.section.video.bottom.index')->with($notification);
+    }
+
+    public function contactMessage(){
+         $contact = Contact::all();
+         return view('backend.contact.message', compact('contact'));
+    }
+
+    public function contactMessageDestroy(string $id)
+    {
+        $contact = Contact::findOrFail($id);
+
+        // Delete DB record
+        $contact->delete();
+
+        $notification = [
+            'message' => 'Contact Message deleted successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->back()->with($notification);
     }
 }
