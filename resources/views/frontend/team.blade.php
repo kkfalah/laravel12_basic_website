@@ -52,7 +52,7 @@
         </div>
 
         @endforeach         
-        {{ $team->links() }}   
+        {{ $team->links('vendor.pagination.lonyo') }}
         @endif
        
       </div>

@@ -42,7 +42,8 @@
                                                 <td><img 
                                                     src="{{ !empty($item->image) ? Storage::url($item->image) : asset('backend/assets/images/default-profile.jpg') }}"
                                                         alt="{{ $item->name }}"
-                                                        class="rounded-2xl avatar-lg img-thumbnail w-10 h-10"></td>
+                                                        class="rounded-2xl avatar-lg img-thumbnail w-10 h-10">
+                                                </td>
                                                 
                                                 <td>
                                                     <a href="{{ route('admin.team.edit', $item->id) }}"

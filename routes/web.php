@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\FaqController;
 use App\Http\Controllers\Backend\FeatureController;
@@ -18,6 +19,10 @@ Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/team', [PageController::class, 'team'])->name('team');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+
+Route::get('/blog', [PageController::class, 'blog'])->name('blog');
+Route::get('/blog/{slug}', [PageController::class, 'blogDetails']);
+Route::get('/blog/category/{slug}', [PageController::class, 'blogCategory']);
 
 
 
@@ -129,6 +134,25 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/team/{id}/edit', 'edit')->name('team.edit');
         Route::patch('/team/{id}/update', 'update')->name('team.update');
         Route::delete('/team/{id}/delete', 'destroy')->name('team.destroy');
+    });
+
+
+    //Blog
+    Route::controller(BlogController::class)->group(function () {
+        //Post
+        Route::get('/blog', 'index')->name('blog.index');
+        Route::get('/blog/create', 'create')->name('blog.create');
+        Route::post('/blog/store', 'store')->name('blog.store');
+        Route::get('/blog/{id}/edit', 'edit')->name('blog.edit');
+        Route::patch('/blog/{id}/update', 'update')->name('blog.update');
+        Route::delete('/blog/{id}/delete', 'destroy')->name('blog.destroy');
+        
+        // Category
+        Route::get('/blog/category', 'categoryIndex')->name('blog.category.index');
+        Route::post('/blog/category/store', 'categoryStore')->name('blog.category.store');
+        Route::get('/blog/category/edit/{id}', 'categoryEdit');
+        Route::post('/blog/category/update', 'categoryUpdate')->name('blog.category.update');
+        Route::delete('/blog/category/{id}/delete', 'categoryDestroy')->name('blog.category.destroy');
     });
 
 });

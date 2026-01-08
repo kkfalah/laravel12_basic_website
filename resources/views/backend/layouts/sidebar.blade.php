@@ -116,6 +116,29 @@
                     </div>
                 </li>
 
+                 <li>
+                    <a href="#Blog" data-bs-toggle="collapse">
+                        <i data-feather="help-circle"></i>
+                        <span> Blog </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="Blog">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('admin.blog.index') }}" class="tp-link">All Blog</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.blog.create') }}" class="tp-link">Add Post</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.blog.category.index') }}" class="tp-link">Blog Category</a>
+                            </li>
+                            
+                           
+                        </ul>
+                    </div>
+                </li>
+
                 
 
                 

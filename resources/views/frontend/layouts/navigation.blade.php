@@ -6,17 +6,11 @@
         <li class="menu-item-has-children">
             <a href="{{ route('about') }}">About Us</a>
             <ul class="sub-menu">
-                <li><a href="#">Company Profile</a></li>
-                <li><a href="#">Portfolio</a></li>
                 <li><a href="{{ route('team') }}">Team</a></li>
             </ul>
         </li>
         <li>
-            <a href="#">Services</a>
-        </li>
-       
-        <li>
-            <a href="#">Blog</a>
+            <a href="{{ route('blog') }}">Blog</a>
         </li>
         <li>
             <a href="{{ route('contact') }}">Contact</a>

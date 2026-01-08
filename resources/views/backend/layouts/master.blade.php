@@ -25,6 +25,10 @@
     <link href="{{ asset('backend/assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css') }}"
         rel="stylesheet" type="text/css" />
 
+    <!-- Quill css -->
+    <link href="{{ asset('backend/assets/libs/quill/quill.core.js') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/assets/libs/quill/quill.snow.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/assets/libs/quill/quill.bubble.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- App css -->
     <link href="{{ asset('backend/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
@@ -84,13 +88,13 @@
     <script src="{{ asset('backend/assets/libs/feather-icons/feather.min.js') }}"></script>
 
     <!-- Apexcharts JS -->
-    <script src="{{ asset('backend/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+    {{-- <script src="{{ asset('backend/assets/libs/apexcharts/apexcharts.min.js') }}"></script> --}}
 
     <!-- for basic area chart -->
-    <script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
+    {{-- <script src="https://apexcharts.com/samples/assets/stock-prices.js"></script> --}}
 
     <!-- Widgets Init Js -->
-    <script src="{{ asset('backend/assets/js/pages/analytics-dashboard.init.js') }}"></script>
+    {{-- <script src="{{ asset('backend/assets/js/pages/analytics-dashboard.init.js') }}"></script> --}}
 
     <!-- Datatables js -->
     <script src="{{ asset('backend/assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
@@ -98,6 +102,12 @@
     <!-- dataTables.bootstrap5 -->
     <script src="{{ asset('backend/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('backend/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+
+    <!-- Quill Editor Js -->
+    <script src="{{ asset('backend/assets/libs/quill/quill.core.js') }}"></script>
+    <script src="{{ asset('backend/assets/libs/quill/quill.min.js') }}"></script>
+    <!-- Quill Demo Js -->
+    <script src="{{ asset('backend/assets/js/pages/quilljs.init.js') }}"></script>
 
     <!-- Datatable Demo App Js -->
     <script src="{{ asset('backend/assets/js/pages/datatable.init.js') }}"></script>

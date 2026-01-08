@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
+use App\Models\BlogCategory;
 use App\Models\Cta;
 use App\Models\Faq;
 use App\Models\Feature;
@@ -67,6 +69,53 @@ class PageController extends Controller
             'team',
             'title',
             'faq',
+        ));
+    }
+
+    public function blog()
+    {
+        $blogs = Blog::latest()->paginate(8);
+        $categories = BlogCategory::withCount('blogs')->orderBy('name', 'ASC')->get();
+        $recentposts = Blog::latest()->limit(3)->get();
+        $cta = Cta::find(1);
+        return view('frontend.blog', compact(
+            'blogs',
+            'categories',
+            'recentposts',
+            'cta',
+
+        ));
+    }
+
+    public function blogDetails(string $slug)
+    {
+        $blog = Blog::where('slug', $slug)->first();
+        $categories = BlogCategory::withCount('blogs')->orderBy('name', 'ASC')->get();
+        $recentposts = Blog::latest()->limit(3)->get();
+        $cta = Cta::find(1);
+        return view('frontend.blog_details', compact(
+            'blog',
+            'categories',
+            'recentposts',
+            'cta',
+
+        ));
+    }
+
+    public function blogCategory(string $slug)
+    {
+        $category = BlogCategory::where('slug', $slug)->first();
+        $blogs = Blog::where('category_id', $category->id)->latest()->paginate(6);
+        $categories = BlogCategory::withCount('blogs')->orderBy('name', 'ASC')->get();
+        $recentposts = Blog::latest()->limit(3)->get();
+        $cta = Cta::find(1);
+        return view('frontend.category_details', compact(
+            'blogs',
+            'category',
+            'categories',
+            'recentposts',
+            'cta',
+
         ));
     }
 }
